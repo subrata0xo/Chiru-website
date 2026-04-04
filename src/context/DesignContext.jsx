@@ -1,55 +1,95 @@
 import React, { createContext, useState, useEffect } from 'react';
+import { collection, onSnapshot, addDoc, deleteDoc, doc, updateDoc, query, orderBy } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL, deleteObject } from 'firebase/storage';
+import { db, storage } from '../firebase/config';
 
 export const DesignContext = createContext();
 
-const defaultDesigns = [
-  {
-    id: 'hero-1',
-    title: 'Avant-Garde Silhouettes',
-    description: 'A contemporary minimalist avant-garde clothing design featuring soft, structured folds in sleek beige tones. The embodiment of pure elegance and architectural lines.',
-    date: '2026-04-04',
-    imageUrl: '/assets/hero_1.png'
-  },
-  {
-    id: 'gallery-1',
-    title: 'Silk Minimalist Dress',
-    description: 'An elegant beige silk minimalist dress with smooth reflections. High-end luxury fashion aesthetic suitable for elite evenings.',
-    date: '2026-04-03',
-    imageUrl: '/assets/gallery_1.png'
-  },
-  {
-    id: 'gallery-2',
-    title: 'Structured Wool Coat',
-    description: 'Modern structured wool coat in ash grey. Features a clean contemporary layout and an architectural silhouette.',
-    date: '2026-04-02',
-    imageUrl: '/assets/gallery_2.png'
-  },
-  {
-    id: 'gallery-3',
-    title: 'Noir Evening Gown',
-    description: 'Minimalist black avant-garde evening gown. Pure luxury, elegant, sleek lines tailored for a striking high-fashion pose.',
-    date: '2026-04-01',
-    imageUrl: '/assets/gallery_3.png'
-  }
-];
-
 export const DesignProvider = ({ children }) => {
-  const [designs, setDesigns] = useState(() => {
-    const saved = localStorage.getItem('luxury-fashion-designs');
-    if (saved) return JSON.parse(saved);
-    return defaultDesigns;
-  });
+  const [designs, setDesigns] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // Firestore Real-time Listener
   useEffect(() => {
-    localStorage.setItem('luxury-fashion-designs', JSON.stringify(designs));
-  }, [designs]);
+    const q = query(collection(db, 'designs'), orderBy('date', 'desc'));
+    const unsubscribe = onSnapshot(q, (snapshot) => {
+      const designList = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      }));
+      setDesigns(designList);
+      setLoading(false);
+    }, (error) => {
+      console.error("Firestore error:", error);
+      setLoading(false);
+    });
 
-  const addDesign = (newDesign) => {
-    setDesigns([{ ...newDesign, id: Date.now().toString() }, ...designs]);
+    return unsubscribe;
+  }, []);
+
+  // Upload to Storage & Save to Firestore
+  const addDesign = async (formData, imageFile) => {
+    let imageUrl = formData.imageUrl || ''; // fallback if it's already a URL
+    let storagePath = '';
+
+    if (imageFile) {
+      storagePath = `designs/${Date.now()}_${imageFile.name}`;
+      const imageRef = ref(storage, storagePath);
+      await uploadBytes(imageRef, imageFile);
+      imageUrl = await getDownloadURL(imageRef);
+    }
+
+    const payload = {
+      ...formData,
+      imageUrl,
+      storagePath,
+      date: formData.date || new Date().toISOString()
+    };
+
+    return await addDoc(collection(db, 'designs'), payload);
+  };
+
+  const updateDesign = async (id, formData, imageFile, oldStoragePath) => {
+    let imageUrl = formData.imageUrl;
+    let storagePath = formData.storagePath;
+
+    if (imageFile) {
+      // Upload new image
+      storagePath = `designs/${Date.now()}_${imageFile.name}`;
+      const imageRef = ref(storage, storagePath);
+      await uploadBytes(imageRef, imageFile);
+      imageUrl = await getDownloadURL(imageRef);
+
+      // Clean up old image if it existed in Storage
+      if (oldStoragePath) {
+        try {
+          const oldRef = ref(storage, oldStoragePath);
+          await deleteObject(oldRef);
+        } catch (e) {
+          console.error("Failed to delete old image:", e);
+        }
+      }
+    }
+
+    const docRef = doc(db, 'designs', id);
+    return await updateDoc(docRef, { ...formData, imageUrl, storagePath });
+  };
+
+  const deleteDesign = async (id, storagePath) => {
+    if (storagePath) {
+      try {
+        const imageRef = ref(storage, storagePath);
+        await deleteObject(imageRef);
+      } catch (e) {
+        console.error("Failed to delete image:", e);
+      }
+    }
+    const docRef = doc(db, 'designs', id);
+    return await deleteDoc(docRef);
   };
 
   return (
-    <DesignContext.Provider value={{ designs, addDesign }}>
+    <DesignContext.Provider value={{ designs, addDesign, updateDesign, deleteDesign, loading }}>
       {children}
     </DesignContext.Provider>
   );
