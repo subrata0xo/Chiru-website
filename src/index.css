@@ -1,14 +1,21 @@
 :root {
-  --color-bg: #FCFBF9;
-  --color-text: #1C1B1A;
-  --color-accent: #D4C4B7;
-  --color-muted: #8E8D8A;
-  --font-serif: 'Playfair Display', serif;
-  --font-sans: 'Inter', sans-serif;
-  --shadow-soft: 0 10px 40px rgba(0,0,0,0.04);
-  --shadow-hover: 0 20px 60px rgba(0,0,0,0.08);
-  --border-radius: 20px;
-  --transition-smooth: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  --color-bg: #000000;
+  --color-surface: #0A0A0A;
+  --color-surface-2: #111111;
+  --color-text: #F0F0F0;
+  --color-accent: #00FFFF;
+  --color-accent-dim: rgba(0, 255, 255, 0.15);
+  --color-muted: #666666;
+  --color-muted-light: #999999;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --glow-sm: 0 0 10px rgba(0, 255, 255, 0.2);
+  --glow-md: 0 0 25px rgba(0, 255, 255, 0.3), 0 0 50px rgba(0, 255, 255, 0.1);
+  --glow-lg: 0 0 30px rgba(0, 255, 255, 0.4), 0 0 60px rgba(0, 255, 255, 0.2), 0 0 100px rgba(0, 255, 255, 0.1);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.5);
+  --shadow-hover: 0 8px 40px rgba(0, 0, 0, 0.6);
+  --border-radius: 16px;
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 * {
@@ -17,19 +24,25 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background-color: var(--color-bg);
   color: var(--color-text);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   line-height: 1.6;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-serif);
+  font-family: var(--font-heading);
   font-weight: 400;
   line-height: 1.2;
+  letter-spacing: 0.02em;
 }
 
 a {
@@ -45,12 +58,12 @@ button {
   cursor: pointer;
 }
 
-/* Glassmorphism utility */
+/* Dark Glassmorphism */
 .glass {
-  background: rgba(255, 255, 255, 0.4);
+  background: rgba(10, 10, 10, 0.6);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 255, 255, 0.08);
 }
 
 /* Base Layout Containers */
@@ -66,12 +79,31 @@ button {
   padding-top: 100px;
 }
 
-/* --- COMPONENTS --- */
-
-/* App CSS Override to fix vite defaults */
+/* App CSS Override */
 #root {
   max-width: 100%;
   margin: 0;
   padding: 0;
   text-align: left;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-muted);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Selection */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-bg);
 }

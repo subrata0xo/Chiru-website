@@ -7,16 +7,16 @@ const About = () => {
     <PageTransition className="page-wrapper container about-page">
       <div className="about-layout">
         <div className="about-content">
-          <h1>The Art of Minimalism</h1>
+          <h1>The Vision</h1>
           <p className="lead-text">
-            JS CREATION was founded on the principle that true luxury is quiet, structured, and inherently timeless. We remove the excess to focus strictly on silhouette, drape, and material integrity.
+            JS CREATION was founded on the belief that fashion is a form of self-expression — bold, unapologetic, and ever-evolving. We design for the modern individual who dares to stand out.
           </p>
           <div className="story-paragraphs">
             <p>
-              Each piece in our collection is treated as an architectural endeavor. We believe fashion should not scream for attention, but rather command respect through its flawless construction and deliberate proportions.
+              Each piece in our collection is crafted with precision and purpose. We believe in the power of clean lines, structured silhouettes, and the quiet confidence that comes from wearing something truly exceptional.
             </p>
             <p>
-              By embracing negative space both in our garments and our presentation, we allow the garment to speak its own truth. Our collections are exclusively showcased here, serving as a digital atelier for the modern connoisseur.
+              Our designs are showcased exclusively here — a digital atelier where every creation tells a story. This is where fashion meets the future.
             </p>
           </div>
         </div>

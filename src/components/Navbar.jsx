@@ -27,11 +27,9 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`navbar ${isScrolled ? 'scrolled glass' : ''}`}>
+      <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
         <div className="navbar-container">
-          <Link to="/" className="navbar-brand">
-            <img src="/logo.png" alt="JS CREATION Logo" style={{ height: '40px', objectFit: 'contain' }} />
-          </Link>
+          <Link to="/" className="navbar-brand">JS CREATION</Link>
           
           <div className="navbar-links desktop-only">
             <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
@@ -43,7 +41,7 @@ const Navbar = () => {
           </div>
 
           <button className="mobile-menu-btn mobile-only" onClick={() => setMobileMenuOpen(true)}>
-            <Menu size={24} />
+            <Menu size={24} color="#F0F0F0" />
           </button>
         </div>
       </nav>
@@ -51,13 +49,13 @@ const Navbar = () => {
       {/* Mobile Menu Overlay */}
       <div className={`mobile-menu ${mobileMenuOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={() => setMobileMenuOpen(false)}>
-          <X size={28} />
+          <X size={28} color="#F0F0F0" />
         </button>
         <div className="mobile-links">
           <Link to="/">Home</Link>
           <Link to="/gallery">Gallery</Link>
           <Link to="/about">About</Link>
-          <button onClick={copyToClipboard} style={{ fontFamily: 'var(--font-serif)', fontSize: '2rem', color: 'var(--color-text)' }}>Share</button>
+          <button onClick={copyToClipboard}>Share</button>
         </div>
       </div>
     </>

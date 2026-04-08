@@ -2,11 +2,47 @@
   padding-bottom: 100px;
 }
 
+/* ===== Brand Hero ===== */
+.brand-hero {
+  text-align: center;
+  padding: 4rem 0 2rem;
+}
+
+.brand-title {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  color: var(--color-text);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 40px rgba(0, 255, 255, 0.08);
+}
+
+.brand-subtitle {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 200;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--color-muted-light);
+  margin-bottom: 2rem;
+}
+
+.brand-line {
+  width: 60px;
+  height: 1px;
+  background: var(--color-accent);
+  margin: 0 auto;
+  box-shadow: var(--glow-sm);
+}
+
+/* ===== Hero Section ===== */
 .hero-section {
   display: flex;
   align-items: center;
   gap: 4rem;
-  min-height: calc(100vh - 100px);
+  min-height: 70vh;
   padding-top: 2rem;
 }
 
@@ -16,24 +52,28 @@
 }
 
 .overline {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-accent);
   display: block;
   margin-bottom: 1.5rem;
 }
 
 .hero-title {
-  font-size: 4.5rem;
+  font-size: 3.5rem;
+  font-weight: 300;
   margin-bottom: 1.5rem;
   color: var(--color-text);
+  letter-spacing: 0.02em;
 }
 
 .hero-desc {
-  font-size: 1.1rem;
-  color: var(--color-muted);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-muted-light);
   margin-bottom: 3rem;
   line-height: 1.8;
 }
@@ -42,20 +82,24 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  background: var(--color-text);
-  color: var(--color-bg);
+  letter-spacing: 0.15em;
+  background: transparent;
+  color: var(--color-accent);
   padding: 16px 32px;
   border-radius: 40px;
-  border: 1px solid var(--color-text);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.4s ease;
 }
 
 .btn-primary:hover {
-  background: transparent;
-  color: var(--color-text);
+  background: rgba(0, 255, 255, 0.08);
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-md);
+  color: var(--color-accent);
 }
 
 .btn-primary svg {
@@ -69,9 +113,10 @@
 .hero-image-container {
   flex: 1;
   position: relative;
-  height: 80vh;
+  height: 75vh;
   border-radius: var(--border-radius);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .hero-image {
@@ -87,13 +132,17 @@
   right: -20px;
   padding: 20px 40px;
   border-radius: 40px;
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  font-weight: 300;
   font-style: italic;
+  color: var(--color-accent);
   transform: rotate(-90deg);
   transform-origin: bottom left;
+  letter-spacing: 0.1em;
 }
 
+/* ===== Latest Section ===== */
 .latest-section {
   margin-top: 100px;
 }
@@ -106,15 +155,23 @@
 }
 
 .section-header h2 {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
+  font-weight: 300;
+  letter-spacing: 0.08em;
 }
 
 .link-text {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  letter-spacing: 0.1em;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   position: relative;
+  color: var(--color-muted-light);
+}
+
+.link-text:hover {
+  color: var(--color-accent);
 }
 
 .link-text::after {
@@ -124,7 +181,8 @@
   left: 0;
   width: 100%;
   height: 1px;
-  background: var(--color-text);
+  background: var(--color-accent);
+  box-shadow: var(--glow-sm);
   transition: transform 0.3s ease;
   transform-origin: right;
 }
@@ -137,10 +195,15 @@
 .grid-layout {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 @media (max-width: 900px) {
+  .brand-title {
+    font-size: 2.5rem;
+    letter-spacing: 0.2em;
+  }
+  
   .hero-section {
     flex-direction: column-reverse;
     justify-content: center;
@@ -154,6 +217,10 @@
   }
   
   .hero-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
+  }
+
+  .grid-layout {
+    grid-template-columns: 1fr;
   }
 }

@@ -1,7 +1,7 @@
 .detail-layout {
   display: flex;
   min-height: 100vh;
-  padding-top: 90px; /* offset navbar */
+  padding-top: 90px;
 }
 
 .detail-image-section {
@@ -23,11 +23,18 @@
   justify-content: center;
   align-items: center;
   z-index: 10;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  color: var(--color-text);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .back-button:hover {
   transform: scale(1.1);
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-sm);
+  color: var(--color-accent);
 }
 
 .detail-image {
@@ -40,10 +47,11 @@
 .detail-content-section {
   flex: 1;
   padding: 4rem 5rem;
-  background: var(--color-bg);
+  background: var(--color-surface);
   display: flex;
   align-items: center;
   position: relative;
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .content-inner {
@@ -51,24 +59,28 @@
 }
 
 .detail-date {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  letter-spacing: 0.15em;
-  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.2em;
+  color: var(--color-accent);
   text-transform: uppercase;
   display: block;
   margin-bottom: 1.5rem;
 }
 
 .detail-title {
-  font-size: 4rem;
+  font-size: 3.5rem;
+  font-weight: 300;
   line-height: 1.1;
   margin-bottom: 2.5rem;
+  letter-spacing: 0.02em;
 }
 
 .detail-desc {
-  font-size: 1.1rem;
-  color: var(--color-muted);
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--color-muted-light);
   line-height: 1.8;
   margin-bottom: 4rem;
 }
@@ -82,25 +94,28 @@
 .btn-instagram {
   display: inline-block;
   padding: 16px 32px;
-  background: var(--color-text);
-  color: var(--color-bg);
+  background: transparent;
+  color: var(--color-accent);
   text-transform: uppercase;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
   border-radius: 30px;
-  transition: var(--transition-smooth);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  transition: all 0.4s ease;
 }
 
 .btn-instagram:hover {
-  background: var(--color-accent);
-  color: var(--color-text);
+  background: rgba(0, 255, 255, 0.08);
+  border-color: var(--color-accent);
+  box-shadow: var(--glow-md);
 }
 
 .btn-icon {
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,8 +124,9 @@
 }
 
 .btn-icon:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+  box-shadow: var(--glow-sm);
 }
 
 @media (max-width: 900px) {
@@ -126,9 +142,11 @@
   
   .detail-content-section {
     padding: 3rem 2rem;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
   
   .detail-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 }

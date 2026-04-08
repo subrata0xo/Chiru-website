@@ -11,18 +11,30 @@ const Home = () => {
   const { designs } = useContext(DesignContext);
   const { scrollY } = useScroll();
   
-  // Create parallax values based on scroll position
   const heroY = useTransform(scrollY, [0, 800], [0, 150]);
   const heroOpacity = useTransform(scrollY, [0, 400], [1, 0]);
   const imgScale = useTransform(scrollY, [0, 800], [1, 1.15]);
   const decorativeY = useTransform(scrollY, [0, 800], [0, -150]);
 
-  // Just use the first design as the "Hero" drop
   const heroDesign = designs.length > 0 ? designs[0] : null;
   const latestDesigns = designs.slice(1, 4);
 
   return (
     <PageTransition className="page-wrapper home-page">
+      {/* Hero Brand Section */}
+      <section className="brand-hero container">
+        <motion.div
+          className="brand-content"
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <h1 className="brand-title">JS CREATION</h1>
+          <p className="brand-subtitle">Daily Clothing Designs</p>
+          <div className="brand-line"></div>
+        </motion.div>
+      </section>
+
       {heroDesign && (
         <section className="hero-section container">
           <motion.div 
@@ -33,30 +45,30 @@ const Home = () => {
               className="overline"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
             >
               Today's Drop
             </motion.span>
-            <motion.h1 
+            <motion.h2 
               className="hero-title"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
             >
               {heroDesign.title}
-            </motion.h1>
+            </motion.h2>
             <motion.p 
               className="hero-desc"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.8 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
             >
               {heroDesign.description}
             </motion.p>
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
+              transition={{ delay: 0.8, duration: 0.8 }}
             >
               <Link to={`/design/${heroDesign.id}`} className="btn-primary">
                 Discover <ArrowRight size={18} />
@@ -95,7 +107,7 @@ const Home = () => {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h2>Recent Curations</h2>
+            <h2>Latest Drops</h2>
             <Link to="/gallery" className="link-text">View All</Link>
           </motion.div>
           <div className="grid-layout">

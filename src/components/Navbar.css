@@ -13,10 +13,10 @@
 
 .navbar.scrolled {
   height: 70px;
-  background: rgba(252, 251, 249, 0.8);
+  background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.08);
 }
 
 .navbar-container {
@@ -30,32 +30,40 @@
 }
 
 .navbar-brand {
-  font-family: var(--font-serif);
-  font-size: 1.5rem;
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
   font-weight: 600;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.25em;
   color: var(--color-text);
   text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: var(--color-accent);
+  text-shadow: var(--glow-sm);
 }
 
 .navbar-links {
   display: flex;
   gap: 3rem;
+  align-items: center;
 }
 
 .navbar-links a {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--color-muted-light);
   text-transform: uppercase;
   transition: color 0.3s ease;
   position: relative;
 }
 
-.navbar-links a:hover, .navbar-links a.active {
-  color: var(--color-text);
+.navbar-links a:hover,
+.navbar-links a.active {
+  color: var(--color-accent);
 }
 
 .navbar-links a::after {
@@ -65,11 +73,13 @@
   left: 0;
   width: 0;
   height: 1px;
-  background-color: var(--color-text);
+  background-color: var(--color-accent);
+  box-shadow: var(--glow-sm);
   transition: width 0.3s ease;
 }
 
-.navbar-links a:hover::after, .navbar-links a.active::after {
+.navbar-links a:hover::after,
+.navbar-links a.active::after {
   width: 100%;
 }
 
@@ -112,10 +122,21 @@
   text-align: center;
 }
 
-.mobile-links a {
-  font-family: var(--font-serif);
+.mobile-links a,
+.mobile-links button {
+  font-family: var(--font-heading);
   font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
   color: var(--color-text);
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.mobile-links a:hover,
+.mobile-links button:hover {
+  color: var(--color-accent);
+  text-shadow: var(--glow-sm);
 }
 
 @media (max-width: 768px) {
@@ -127,16 +148,16 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 400;
-  letter-spacing: 0.05em;
-  color: var(--color-muted);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  letter-spacing: 0.12em;
+  color: var(--color-muted-light);
   text-transform: uppercase;
   transition: color 0.3s ease;
   cursor: pointer;
 }
-.share-btn:hover {
-  color: var(--color-text);
-}
 
+.share-btn:hover {
+  color: var(--color-accent);
+}
