@@ -2,8 +2,6 @@ import React, { Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { DesignProvider } from './context/DesignContext';
-import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/ProtectedRoute';
 
 import PublicLayout from './layouts/PublicLayout';
 import AdminLayout from './layouts/AdminLayout';
@@ -14,7 +12,6 @@ const Gallery = React.lazy(() => import('./pages/Gallery'));
 const DesignDetail = React.lazy(() => import('./pages/DesignDetail'));
 const About = React.lazy(() => import('./pages/About'));
 const Admin = React.lazy(() => import('./pages/Admin'));
-const Login = React.lazy(() => import('./pages/Login'));
 
 const PageLoader = () => (
   <div style={{ minHeight: '100vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -47,16 +44,9 @@ const AnimatedRoutes = () => {
         {/* Admin Routes without Public Navbar */}
         <Route element={<AdminLayout />}>
           <Route path="/admin" element={
-            <ProtectedRoute>
-              <Suspense fallback={<PageLoader />}><Admin /></Suspense>
-            </ProtectedRoute>
+            <Suspense fallback={<PageLoader />}><Admin /></Suspense>
           } />
         </Route>
-
-        {/* Standalone Login Page */}
-        <Route path="/login" element={
-          <Suspense fallback={<PageLoader />}><Login /></Suspense>
-        } />
       </Routes>
     </AnimatePresence>
   );
@@ -64,15 +54,13 @@ const AnimatedRoutes = () => {
 
 function App() {
   return (
-    <AuthProvider>
-      <DesignProvider>
-        <BrowserRouter>
-          <div className="app">
-            <AnimatedRoutes />
-          </div>
-        </BrowserRouter>
-      </DesignProvider>
-    </AuthProvider>
+    <DesignProvider>
+      <BrowserRouter>
+        <div className="app">
+          <AnimatedRoutes />
+        </div>
+      </BrowserRouter>
+    </DesignProvider>
   );
 }
 
