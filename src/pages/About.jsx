@@ -9,7 +9,7 @@ const About = () => {
         <div className="about-content">
           <h1>The Art of Minimalism</h1>
           <p className="lead-text">
-            Holovetra was founded on the principle that true luxury is quiet, structured, and inherently timeless. We remove the excess to focus strictly on silhouette, drape, and material integrity.
+            JS CREATION was founded on the principle that true luxury is quiet, structured, and inherently timeless. We remove the excess to focus strictly on silhouette, drape, and material integrity.
           </p>
           <div className="story-paragraphs">
             <p>

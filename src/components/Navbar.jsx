@@ -29,7 +29,9 @@ const Navbar = () => {
     <>
       <nav className={`navbar ${isScrolled ? 'scrolled glass' : ''}`}>
         <div className="navbar-container">
-          <Link to="/" className="navbar-brand">HOLOVETRA</Link>
+          <Link to="/" className="navbar-brand">
+            <img src="/logo.png" alt="JS CREATION Logo" style={{ height: '40px', objectFit: 'contain' }} />
+          </Link>
           
           <div className="navbar-links desktop-only">
             <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Home</Link>
