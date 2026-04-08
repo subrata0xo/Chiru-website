@@ -4,44 +4,52 @@ export const DesignContext = createContext();
 
 const defaultDesigns = [
   {
-    id: 'hero-1',
-    title: 'Avant-Garde Silhouettes',
-    description: 'A contemporary minimalist avant-garde clothing design featuring soft, structured folds in sleek beige tones. The embodiment of pure elegance and architectural lines.',
-    date: '2026-04-04',
-    imageUrl: '/assets/hero_1.png'
+    id: 'design-1',
+    title: 'Nostalgic Typography Tee',
+    description: 'A crisp white everyday graphic tee featuring bold Bengali typography. The colorful text “এটা কি 2441139?” embraces retro cultural nostalgia with a playful, laid-back vibe. Perfect for street casual outfits.',
+    date: '2026-04-08',
+    imageUrl: '/assets/design_1.jpg'
   },
   {
-    id: 'gallery-1',
-    title: 'Silk Minimalist Dress',
-    description: 'An elegant beige silk minimalist dress with smooth reflections. High-end luxury fashion aesthetic suitable for elite evenings.',
-    date: '2026-04-03',
-    imageUrl: '/assets/gallery_1.png'
+    id: 'design-2',
+    title: 'Postage Stamp Graphic Tee',
+    description: 'A sleek black minimalist t-shirt accented with twin vintage postage stamp designs on the chest reading "চিঠি দিও". A clever nod to classic correspondence, bridging the gap between digital-age fashion and analog memories.',
+    date: '2026-04-08',
+    imageUrl: '/assets/design_2.jpg'
   },
   {
-    id: 'gallery-2',
-    title: 'Structured Wool Coat',
-    description: 'Modern structured wool coat in ash grey. Features a clean contemporary layout and an architectural silhouette.',
-    date: '2026-04-02',
-    imageUrl: '/assets/gallery_2.png'
+    id: 'design-3',
+    title: 'Neon Script Statement Shirt',
+    description: 'Featuring a bold stack of neon orange Bengali typography that translates to "শেষ ট্রেনে ঘরে ফিরবো না", this black tee offers an edgy, urban look. It speaks to late-night adventures and rebellion, with a high-contrast futuristic feel.',
+    date: '2026-04-08',
+    imageUrl: '/assets/design_3.jpg'
   },
   {
-    id: 'gallery-3',
-    title: 'Noir Evening Gown',
-    description: 'Minimalist black avant-garde evening gown. Pure luxury, elegant, sleek lines tailored for a striking high-fashion pose.',
-    date: '2026-04-01',
-    imageUrl: '/assets/gallery_3.png'
+    id: 'design-4',
+    title: 'Verified Fan Badge Tee',
+    description: 'A clean, modern black graphic tee featuring the text "ফেলুদা ভক্ত" accompanied by a signature blue verification checkmark. An essential statement piece declaring ultimate fandom with a crisp, contemporary aesthetic.',
+    date: '2026-04-08',
+    imageUrl: '/assets/design_4.jpg'
+  },
+  {
+    id: 'design-5',
+    title: 'Acoustic Soul Print',
+    description: 'This artistic black t-shirt beautifully highlights a traditional Dotara string instrument over a rich golden-yellow brushstroke background, with "মিলন হবে কত দিনে" typography. A poetic and soulful tribute to folk heritage.',
+    date: '2026-04-08',
+    imageUrl: '/assets/design_5.jpg'
   }
 ];
 
 export const DesignProvider = ({ children }) => {
   const [designs, setDesigns] = useState(() => {
-    const saved = localStorage.getItem('luxury-fashion-designs');
+    // New storage key to force resetting to the new designs
+    const saved = localStorage.getItem('js-creation-designs-v2');
     if (saved) return JSON.parse(saved);
     return defaultDesigns;
   });
 
   useEffect(() => {
-    localStorage.setItem('luxury-fashion-designs', JSON.stringify(designs));
+    localStorage.setItem('js-creation-designs-v2', JSON.stringify(designs));
   }, [designs]);
 
   const addDesign = (newDesign) => {
