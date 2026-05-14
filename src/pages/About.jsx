@@ -35,8 +35,7 @@ const About = () => {
           </div>
         </div>
         <div className="about-visual">
-          <div className="visual-block main-block"></div>
-          <div className="visual-block accent-block"></div>
+          <img src="/js-creation-logo.png" alt="JS Creation Logo" className="about-logo-img" />
         </div>
       </div>
     </PageTransition>

@@ -43,32 +43,18 @@
 
 .about-visual {
   flex: 1;
-  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 500px;
 }
 
-.visual-block {
-  position: absolute;
+.about-logo-img {
+  max-width: 100%;
+  max-height: 450px;
+  object-fit: contain;
   border-radius: var(--border-radius);
-}
-
-.main-block {
-  top: 0;
-  right: 0;
-  width: 80%;
-  height: 90%;
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(0, 255, 255, 0.02));
-  border: 1px solid rgba(0, 255, 255, 0.08);
-}
-
-.accent-block {
-  bottom: 0;
-  left: 0;
-  width: 60%;
-  height: 60%;
-  background: rgba(0, 255, 255, 0.03);
-  border: 1px solid rgba(0, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
+  filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.1));
 }
 
 .contact-details {
