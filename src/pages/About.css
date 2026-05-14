@@ -43,18 +43,32 @@
 
 .about-visual {
   flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative;
+  min-height: 500px;
 }
 
-.about-logo-img {
-  width: 100%;
-  max-width: 360px;
-  aspect-ratio: 9 / 16;
-  object-fit: cover;
+.visual-block {
+  position: absolute;
   border-radius: var(--border-radius);
-  filter: drop-shadow(0 0 30px rgba(0, 255, 255, 0.1));
+}
+
+.main-block {
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 90%;
+  background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(0, 255, 255, 0.02));
+  border: 1px solid rgba(0, 255, 255, 0.08);
+}
+
+.accent-block {
+  bottom: 0;
+  left: 0;
+  width: 60%;
+  height: 60%;
+  background: rgba(0, 255, 255, 0.03);
+  border: 1px solid rgba(0, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
 }
 
 .contact-details {
@@ -104,11 +118,7 @@
     flex-direction: column;
   }
   .about-visual {
-    margin-top: 2rem;
-  }
-  .about-logo-img {
-    max-width: 280px;
-    margin: 0 auto;
+    display: none;
   }
   .about-content h1 {
     font-size: 2.5rem;
