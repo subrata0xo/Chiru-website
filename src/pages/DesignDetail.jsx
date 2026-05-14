@@ -43,8 +43,8 @@ const DesignDetail = () => {
             </div>
             
             <div className="detail-actions">
-              <a href="https://instagram.com" target="_blank" rel="noreferrer" className="btn-instagram">
-                DM on Instagram for purchase
+              <a href="https://whatsapp.com/channel/0029Vb8A0RrJP20z0daYSe2W" target="_blank" rel="noreferrer" className="btn-whatsapp">
+                Join our WhatsApp Channel
               </a>
               <button className="btn-icon" onClick={handleCopyLink} title="Share Link">
                 <Share2 size={20} />

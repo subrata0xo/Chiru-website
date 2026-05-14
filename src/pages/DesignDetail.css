@@ -91,7 +91,7 @@
   gap: 1.5rem;
 }
 
-.btn-instagram {
+.btn-whatsapp {
   display: inline-block;
   padding: 16px 32px;
   background: transparent;
@@ -105,7 +105,7 @@
   transition: all 0.4s ease;
 }
 
-.btn-instagram:hover {
+.btn-whatsapp:hover {
   background: rgba(0, 255, 255, 0.08);
   border-color: var(--color-accent);
   box-shadow: var(--glow-md);
