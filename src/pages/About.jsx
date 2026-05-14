@@ -25,6 +25,14 @@ const About = () => {
               At our core, we believe clothing is more than just fabric — it’s a way to express who you are. And through our typography designs, we aim to help you wear your identity with pride. Thank you.
             </p>
           </div>
+          <div className="contact-details">
+            <h2><strong>Contact Details</strong></h2>
+            <p>Contact no. :</p>
+            <ul>
+              <li>+919836429656</li>
+              <li>+918017492830</li>
+            </ul>
+          </div>
         </div>
         <div className="about-visual">
           <div className="visual-block main-block"></div>
